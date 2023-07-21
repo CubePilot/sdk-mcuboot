@@ -22,9 +22,9 @@
 #include "bootutil/bootutil_log.h"
 #include <usb/usb_device.h>
 
-#if defined(CONFIG_BOOT_SERIAL_UART) && defined(CONFIG_UART_CONSOLE)
-#error Zephyr UART console must been disabled if serial_adapter module is used.
-#endif
+// #if defined(CONFIG_BOOT_SERIAL_UART) && defined(CONFIG_UART_CONSOLE)
+// #error Zephyr UART console must been disabled if serial_adapter module is used.
+// #endif
 
 BOOT_LOG_MODULE_REGISTER(serial_adapter);
 
@@ -192,7 +192,7 @@ static int
 boot_uart_fifo_init(void)
 {
 #ifdef CONFIG_BOOT_SERIAL_UART
-	uart_dev = DEVICE_DT_GET(DT_CHOSEN(zephyr_console));
+	uart_dev = DEVICE_DT_GET(DT_CHOSEN(zephyr_uart_mcumgr));
 #elif CONFIG_BOOT_SERIAL_CDC_ACM
 	uart_dev = DEVICE_DT_GET_ONE(zephyr_cdc_acm_uart);
 #endif
